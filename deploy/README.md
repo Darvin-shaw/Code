@@ -67,3 +67,14 @@ python scripts\check_nexent_env.py
 ```
 
 检查项：Python、Git、Docker、Docker Compose、磁盘空间、网络出口。全部通过后再执行部署。
+
+## 7. 本机自动部署（重启自恢复）
+
+本机 Windows 需先启用 WSL2/VirtualMachinePlatform 并重启。为保证重启后无需人工干预，仓库提供：
+
+- `deploy/auto-deploy.ps1`：登录后自动完成 启用功能 → 安装 Docker Desktop（wsl-2 后端）→
+  克隆 Nexent → `deploy.sh docker --defaults` → 健康检查，全程写日志到 `D:\nexent-deploy.log`
+- `deploy/register-auto-task.ps1`：以管理员注册一次性 ONLOGON 计划任务 `CodexNexentDeploy`
+- `deploy/diagnose-features.ps1`：管理员功能状态诊断
+
+任务运行完成会自动删除自身，避免每次登录重复执行；状态写至 `D:\nexent-deploy-status.json`。
