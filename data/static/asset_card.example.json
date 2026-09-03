@@ -1,0 +1,12 @@
+{
+  "asset_id": "AST-20260903-0001",
+  "source_file": "03_quality_records/spc_hardness_axis_202505.csv",
+  "modality": "table",
+  "doc_type": "quality_record",
+  "business_tags": ["2025-05", "AX-A", "HT-03", "HARD-HRC"],
+  "entities": ["AX-20250518-01", "HT-03", "HARD-HRC", "DEF-HARD-LOW"],
+  "checksum": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+  "chunk_ids": [],
+  "ingested_at": "2026-09-03T00:00:00Z"
+}
+

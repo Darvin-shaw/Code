@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nexent 资产卡片 Schema v1",
+  "description": "衡策 EvoNex 多模态资产统一标识格式；CSV 台账中的列表字段使用分号分隔",
+  "type": "object",
+  "required": [
+    "asset_id",
+    "source_file",
+    "modality",
+    "doc_type",
+    "business_tags",
+    "entities",
+    "checksum",
+    "ingested_at"
+  ],
+  "properties": {
+    "asset_id": {
+      "type": "string",
+      "pattern": "^AST-[0-9]{8}-[0-9]{4}$",
+      "description": "资产唯一标识"
+    },
+    "source_file": {
+      "type": "string",
+      "description": "相对数据根目录的来源文件路径"
+    },
+    "modality": {
+      "type": "string",
+      "enum": ["text", "table", "image", "audio", "video", "mixed"]
+    },
+    "doc_type": {
+      "type": "string",
+      "description": "业务文档类型，如 quality_doc / quality_record / master_data / visual_evidence"
+    },
+    "business_tags": {
+      "type": ["string", "array"],
+      "description": "业务标签，数组或分号分隔字符串"
+    },
+    "entities": {
+      "type": ["string", "array"],
+      "description": "抽提到的实体主键，数组或分号分隔字符串"
+    },
+    "checksum": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "源文件 SHA-256"
+    },
+    "chunk_ids": {
+      "type": ["string", "array"],
+      "description": "Nexent 入库后对应的 chunk 标识（导入后回填）"
+    },
+    "ingested_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "资产注册时间（UTC ISO8601）"
+    }
+  },
+  "additionalProperties": true
+}
+

@@ -1,0 +1,13 @@
+# 运行 MCP 服务与数据生成的可选依赖（核心逻辑均标准库优先）
+# 基础开发：
+pytest>=8.0
+ruff>=0.5
+
+# 数据生成增强（表格/图片）：
+openpyxl>=3.1
+matplotlib>=3.8
+numpy>=1.26
+
+# MCP 服务（Nexent 集成，运行 server.py 前安装）：
+mcp>=1.0
+

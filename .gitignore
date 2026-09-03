@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+
+# 生成产物（数据可按需强制添加）
+data/generated/
+*.db
+*.sqlite
+*.log
+
+# 本地配置与密钥
+.env
+.env.*
+!.env.example
+
+# 系统
+Thumbs.db
+.DS_Store
+

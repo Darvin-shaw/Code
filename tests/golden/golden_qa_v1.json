@@ -1,0 +1,146 @@
+[
+  {
+    "id": "QA-001",
+    "type": "root-cause",
+    "question": "2025-05 AX-20250518-01 批次电机轴表面硬度不合格，是否与 3 号热处理炉（HT-03）温漂相关？请给出依据。",
+    "gold_answer_summary": "高度相关。SPC 显示过程自 05-12 后均值下移并于 05-18 起连续低于 2σ/规格下限；维保记录显示 HT-03 热电偶校准自 05-11 超期、05-20 更换后过程恢复。按 WI-HT-AX/3.1 校准要求应判为热处理过程失控，建议返工并复检。",
+    "required_evidence": [
+      "03_quality_records/spc_hardness_axis_202505.csv",
+      "03_quality_records/maintenance_logs.csv",
+      "02_quality_docs/WI-HT-AX-热处理作业指导书.md",
+      "04_visual_evidence/spc_hardness_HT03_202505.png"
+    ],
+    "forbidden_evidence": [
+      "03_quality_records/customer_complaints.csv"
+    ],
+    "gold_chain": [
+      {"step": "确认批次与 42 件 NG", "evidence": "03_quality_records/spc_hardness_axis_202505.csv"},
+      {"step": "确认过程均值下移并越限", "evidence": "04_visual_evidence/spc_hardness_HT03_202505.png"},
+      {"step": "确认热电偶校准超期与更换", "evidence": "03_quality_records/maintenance_logs.csv"},
+      {"step": "依据工艺规程判为过程失控", "evidence": "02_quality_docs/WI-HT-AX-热处理作业指导书.md"},
+      {"step": "结论：与 HT-03 温漂高度相关，返工复检", "evidence": "02_quality_docs/QP-INC-03-不合格品控制程序.md"}
+    ]
+  },
+  {
+    "id": "QA-002",
+    "type": "disposition",
+    "question": "AX-20250518-01 批次的 42 件硬度不合格品，是否可以默认让步接收？应如何处置？",
+    "gold_answer_summary": "不可以默认让步接收。硬度 45.5–47.4 低于 48 HRC 下限；按 QP-INC-03 4.3，让步接收需客户书面同意并经质量经理批准；程序默认路径为返工并重新检验（4.1）。复检记录 IR-20250522-01 显示返工后合格。",
+    "required_evidence": [
+      "02_quality_docs/SP-INSP-AX-电机轴检验规范.md",
+      "02_quality_docs/QP-INC-03-不合格品控制程序.md",
+      "03_quality_records/nonconformity_records.csv",
+      "03_quality_records/inspection_records_2025H1.csv"
+    ],
+    "forbidden_evidence": [],
+    "gold_chain": [
+      {"step": "查规格限与实测值", "evidence": "02_quality_docs/SP-INSP-AX-电机轴检验规范.md"},
+      {"step": "查不合格品处置程序", "evidence": "02_quality_docs/QP-INC-03-不合格品控制程序.md"},
+      {"step": "确认返工状态", "evidence": "03_quality_records/nonconformity_records.csv"},
+      {"step": "确认返工后复检合格", "evidence": "03_quality_records/inspection_records_2025H1.csv"}
+    ]
+  },
+  {
+    "id": "QA-003",
+    "type": "numeric",
+    "question": "根据 SPC 台账，AX-20250518-01 批次实测硬度分布范围是多少？全部低于规格下限吗？",
+    "gold_answer_summary": "该批次 42 件实测值介于 45.5–47.4 HRC，全部低于规格下限 48 HRC，均判定 NG。",
+    "required_evidence": ["03_quality_records/spc_hardness_axis_202505.csv"],
+    "forbidden_evidence": [],
+    "gold_chain": [
+      {"step": "过滤 batch_id=AX-20250518-01", "evidence": "03_quality_records/spc_hardness_axis_202505.csv"},
+      {"step": "统计 min/max 与规格比较", "evidence": "03_quality_records/spc_hardness_axis_202505.csv"}
+    ]
+  },
+  {
+    "id": "QA-004",
+    "type": "numeric",
+    "question": "热电偶校准超期是什么时候被发现，什么时候完成处置？",
+    "gold_answer_summary": "2025-05-11 发现 HT-03 热电偶校准超期并安排校准；2025-05-20 完成更换与现场校准，状态 Closed。",
+    "required_evidence": ["03_quality_records/maintenance_logs.csv"],
+    "forbidden_evidence": [],
+    "gold_chain": [
+      {"step": "检索 HT-03 维保记录", "evidence": "03_quality_records/maintenance_logs.csv"},
+      {"step": "提取 open/closed 时间", "evidence": "03_quality_records/maintenance_logs.csv"}
+    ]
+  },
+  {
+    "id": "QA-005",
+    "type": "disposition",
+    "question": "该不合格批次返工后是否重新检验？结果如何？",
+    "gold_answer_summary": "已返工并重新检验：IR-20250522-01 显示 42 件复检 NG=0、结果 OK；满足 QP-INC-03 4.1。",
+    "required_evidence": ["03_quality_records/inspection_records_2025H1.csv"],
+    "forbidden_evidence": ["03_quality_records/customer_complaints.csv"],
+    "gold_chain": [
+      {"step": "按批次查复检记录", "evidence": "03_quality_records/inspection_records_2025H1.csv"},
+      {"step": "对照程序 4.1 判断合规", "evidence": "02_quality_docs/QP-INC-03-不合格品控制程序.md"}
+    ]
+  },
+  {
+    "id": "QA-006",
+    "type": "counter-evidence",
+    "question": "2025 年 6 月齿轮箱异响投诉，能否用来解释 5 月电机轴硬度不合格？为什么？",
+    "gold_answer_summary": "不能。异响投诉对象为 GB-G1、批次 GB-20250608-01，由装配线 AS-01 生产，与 AX-A 轴硬度批次及 HT-03 不在同一产品/工序/时间链路上；硬要引用属于误导性反证。",
+    "required_evidence": ["03_quality_records/customer_complaints.csv"],
+    "forbidden_evidence": ["03_quality_records/spc_hardness_axis_202505.csv"],
+    "gold_chain": [
+      {"step": "读取客诉产品/批次/工序", "evidence": "03_quality_records/customer_complaints.csv"},
+      {"step": "对比硬度批次的产品/工序链路", "evidence": "03_quality_records/spc_hardness_axis_202505.csv"},
+      {"step": "判定证据不相干", "evidence": "01_master_data/products.csv"}
+    ]
+  },
+  {
+    "id": "QA-007",
+    "type": "doc-lookup",
+    "question": "电机轴硬度检验的规格限与抽样规则出自哪个文件？",
+    "gold_answer_summary": "出自 SP-INSP-AX 电机轴检验规范：HARD-HRC 规格 48–56 HRC，每批 5 件、首末件必检。",
+    "required_evidence": ["02_quality_docs/SP-INSP-AX-电机轴检验规范.md"],
+    "forbidden_evidence": [],
+    "gold_chain": [
+      {"step": "定位检验规范", "evidence": "02_quality_docs/SP-INSP-AX-电机轴检验规范.md"},
+      {"step": "提取判据", "evidence": "02_quality_docs/SP-INSP-AX-电机轴检验规范.md"}
+    ]
+  },
+  {
+    "id": "QA-008",
+    "type": "root-cause",
+    "question": "WI-HT-AX 中对设备热电偶的受控要求是什么？发现超期应如何处理？",
+    "gold_answer_summary": "设备热电偶应处于校准有效期内；发现校准超期或温度异常应立即停止生产并通知设备/质量人员，再按 QP-INC-03 处置。",
+    "required_evidence": ["02_quality_docs/WI-HT-AX-热处理作业指导书.md"],
+    "forbidden_evidence": [],
+    "gold_chain": [
+      {"step": "读取过程控制条款", "evidence": "02_quality_docs/WI-HT-AX-热处理作业指导书.md"}
+    ]
+  },
+  {
+    "id": "QA-009",
+    "type": "multimodal",
+    "question": "请解读 SPC 控制图中 05-18 附近的变化，并说明它对应台账中的哪些批次。",
+    "gold_answer_summary": "图中 05-18 对应子组连续跌至 47 HRC 附近并低于规格下限 48，对应台账 batch_id=AX-20250518-01 的 42 个 NG 点；后续 05-20 批次恢复到 51 以上。",
+    "required_evidence": [
+      "04_visual_evidence/spc_hardness_HT03_202505.png",
+      "03_quality_records/spc_hardness_axis_202505.csv"
+    ],
+    "forbidden_evidence": [],
+    "gold_chain": [
+      {"step": "识别图中越限区段", "evidence": "04_visual_evidence/spc_hardness_HT03_202505.png"},
+      {"step": "按时间映射批次", "evidence": "03_quality_records/spc_hardness_axis_202505.csv"}
+    ]
+  },
+  {
+    "id": "QA-010",
+    "type": "doc-lookup",
+    "question": "标准摘要中与“让步接收”对应的是哪一内部锚点？内部程序如何落地该要求？",
+    "gold_answer_summary": "对应 STD:GB/T19001:8.7（不合格输出的控制，概念摘要）；内部程序 QP-INC-03 4.3 落地为“客户书面同意 + 质量经理批准 + 记录范围与理由”。",
+    "required_evidence": [
+      "02_quality_docs/STD-GB-T19001-摘要.md",
+      "02_quality_docs/QP-INC-03-不合格品控制程序.md"
+    ],
+    "forbidden_evidence": [],
+    "gold_chain": [
+      {"step": "找到标准锚点", "evidence": "02_quality_docs/STD-GB-T19001-摘要.md"},
+      {"step": "对应程序条款", "evidence": "02_quality_docs/QP-INC-03-不合格品控制程序.md"}
+    ]
+  }
+]
+
