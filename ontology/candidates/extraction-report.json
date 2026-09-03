@@ -1,0 +1,7 @@
+{
+  "total": 9,
+  "confirmed": 5,
+  "candidate": 4,
+  "rejected": 0,
+  "output": "ontology\\candidates\\candidate-triples.jsonl"
+}
