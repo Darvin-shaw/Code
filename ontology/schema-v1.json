@@ -1,0 +1,147 @@
+{
+  "version": "v1",
+  "scenario": "先进制造：衡星精工工艺质量合规决策",
+  "description": "覆盖产品/批次/工序/设备/检验/缺陷/文件/标准/处置的低资源质量决策本体。三元组均要求携带 confidence、status、source 与标准/文件锚点，支持人工审核与增量演进。",
+  "classes": {
+    "ProductPart": {
+      "cn": "产品/零件",
+      "key_property": "part_no",
+      "examples": ["AX-A", "GB-G1"]
+    },
+    "Batch": {
+      "cn": "批次",
+      "key_property": "batch_id",
+      "examples": ["AX-20250518-01"]
+    },
+    "Process": {
+      "cn": "工序",
+      "key_property": "process_code",
+      "examples": ["HT-AX", "MC-AX", "AS-GB"]
+    },
+    "Equipment": {
+      "cn": "设备",
+      "key_property": "equipment_code",
+      "examples": ["HT-03", "MC-07"]
+    },
+    "MeasurementItem": {
+      "cn": "测量项",
+      "key_property": "item_code",
+      "examples": ["HARD-HRC", "STRAIGHT-MM"]
+    },
+    "InspectionRecord": {
+      "cn": "检验记录",
+      "key_property": "record_id",
+      "examples": ["IR-20250518-01"]
+    },
+    "MaintenanceRecord": {
+      "cn": "维保记录",
+      "key_property": "maintenance_id",
+      "examples": ["MT-20250511-01"]
+    },
+    "Defect": {
+      "cn": "缺陷/不良类型",
+      "key_property": "defect_code",
+      "examples": ["DEF-HARD-LOW"]
+    },
+    "QualityDocument": {
+      "cn": "质量文件/规程",
+      "key_property": "doc_id",
+      "examples": ["QP-INC-03", "WI-HT-AX", "SP-INSP-AX"]
+    },
+    "StandardClause": {
+      "cn": "标准条款锚点",
+      "key_property": "clause_id",
+      "examples": ["STD:GB/T19001:8.7"]
+    },
+    "DispositionDecision": {
+      "cn": "处置决策",
+      "key_property": "decision_code",
+      "examples": ["DISP-REWORK", "DISP-SCRAP", "DISP-CONCESSION"]
+    },
+    "Person": {
+      "cn": "人员/角色",
+      "key_property": "employee_id",
+      "examples": ["E0001", "E0004"]
+    }
+  },
+  "relations": {
+    "belongs_to": {
+      "cn": "隶属于产品",
+      "subject_types": ["Batch"],
+      "object_types": ["ProductPart"]
+    },
+    "produced_in": {
+      "cn": "由工序生产",
+      "subject_types": ["Batch"],
+      "object_types": ["Process"]
+    },
+    "executed_on": {
+      "cn": "在设备上执行",
+      "subject_types": ["Process"],
+      "object_types": ["Equipment"]
+    },
+    "inspected_by": {
+      "cn": "被检验记录覆盖",
+      "subject_types": ["Batch"],
+      "object_types": ["InspectionRecord"]
+    },
+    "measures": {
+      "cn": "测量项目",
+      "subject_types": ["InspectionRecord"],
+      "object_types": ["MeasurementItem"]
+    },
+    "detected": {
+      "cn": "检出缺陷",
+      "subject_types": ["InspectionRecord"],
+      "object_types": ["Defect"]
+    },
+    "has_defect": {
+      "cn": "存在缺陷",
+      "subject_types": ["Batch"],
+      "object_types": ["Defect"]
+    },
+    "follows": {
+      "cn": "执行依据文件",
+      "subject_types": ["Process"],
+      "object_types": ["QualityDocument"]
+    },
+    "references": {
+      "cn": "引用文件",
+      "subject_types": ["QualityDocument"],
+      "object_types": ["QualityDocument"]
+    },
+    "aligns_with": {
+      "cn": "对齐标准条款",
+      "subject_types": ["QualityDocument"],
+      "object_types": ["StandardClause"]
+    },
+    "has_maintenance": {
+      "cn": "有维保记录",
+      "subject_types": ["Equipment"],
+      "object_types": ["MaintenanceRecord"]
+    },
+    "applies_to": {
+      "cn": "适用于缺陷处置",
+      "subject_types": ["DispositionDecision"],
+      "object_types": ["Defect"]
+    },
+    "based_on": {
+      "cn": "决策依据文件",
+      "subject_types": ["DispositionDecision"],
+      "object_types": ["QualityDocument"]
+    },
+    "approved_by": {
+      "cn": "由角色审批",
+      "subject_types": ["DispositionDecision"],
+      "object_types": ["Person"]
+    }
+  },
+  "triple_properties": {
+    "confidence": {"type": "number", "range": [0, 1], "description": "置信度"},
+    "status": {"type": "string", "enum": ["candidate", "confirmed", "rejected"]},
+    "source": {"type": "string", "description": "抽取来源，如 seed-rule / llm / user-confirm"},
+    "standard_ref": {"type": "string", "description": "标准/内部文件锚点"},
+    "version": {"type": "string", "description": "本体版本"}
+  }
+}
+

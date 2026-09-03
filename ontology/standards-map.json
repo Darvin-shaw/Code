@@ -1,0 +1,31 @@
+{
+  "version": "v1",
+  "notice": "标准内容仅以二次改写摘要提供概念锚点，不作为标准原文；内部文件为虚构合成文件。",
+  "mappings": [
+    {
+      "clause_id": "STD:GB/T19001:8.5",
+      "source_title": "GB/T 19001 生产和服务提供的控制（概念摘要）",
+      "synonyms": ["生产过程受控", "作业指导", "监视测量资源"],
+      "internal_docs": ["WI-HT-AX", "SP-INSP-AX"],
+      "ontology_terms": ["Process", "Equipment", "QualityDocument"],
+      "note": "受控条件：作业指导、适宜设备、监视测量资源"
+    },
+    {
+      "clause_id": "STD:GB/T19001:8.6",
+      "source_title": "GB/T 19001 产品和服务的放行（概念摘要）",
+      "synonyms": ["放行", "检验合格", "验证记录"],
+      "internal_docs": ["SP-INSP-AX", "IR-20250518-01"],
+      "ontology_terms": ["InspectionRecord", "MeasurementItem", "DispositionDecision"],
+      "note": "放行应基于验证完成并保留记录"
+    },
+    {
+      "clause_id": "STD:GB/T19001:8.7",
+      "source_title": "GB/T 19001 不合格输出的控制（概念摘要）",
+      "synonyms": ["不合格品", "返工", "报废", "让步接收", "防止误用"],
+      "internal_docs": ["QP-INC-03", "NC-20250518-001"],
+      "ontology_terms": ["Defect", "DispositionDecision", "StandardClause"],
+      "note": "应标识、隔离、评审；处置含返工/报废/经授权让步，并保留记录"
+    }
+  ]
+}
+
