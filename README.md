@@ -8,15 +8,16 @@ PDF 规程、Excel/CSV 台账、质检图片等异构存量数据，加工成「
 
 **Iteration 1（工程基础 + M1 数据工程 + M3 本体种子）**
 
-**Iteration 1（M1 场景与数据工程）已完成，开发暂停待下一步指令**
+**Iteration 2（M2 平台接入代码层 + M3 本体种子）进行中**
 
 - [x] 项目骨架与开发规范
 - [x] T1.1 数据规格文档与实体映射
 - [x] T1.2 合成数据生成器（CSV=12、MD=5、PNG=3，可复现）
 - [x] T1.3 资产卡片 Schema、台账格式与校验（8 项单测通过）
 - [x] T1.4 Golden 评测集 v1（10 条）与评测 Harness
+- [x] T2.3 MCP Server 核心逻辑与单测（资产认知/图谱本体/决策证据链，21 项单测通过）
 - [ ] T2.1 Nexent 本地部署（依赖 Docker 与模型 Key，见 `deploy/`）
-- [ ] MCP Server 联调与 Skill 包完善
+- [ ] Nexent MCP 联调与 Skill 包完善
 - [ ] T3.1 本体 Schema v1 与种子三元组
 
 ## 目录结构
@@ -27,8 +28,8 @@ PDF 规程、Excel/CSV 台账、质检图片等异构存量数据，加工成「
 ├─ data/                  # 数据说明与静态样例
 ├─ scripts/               # 数据生成等可执行脚本
 ├─ ontology/              # 本体 Schema、种子三元组、标准映射
-├─ tests/                 # Golden 集、Schema 与一致性测试
-├─ mcp_servers/           # 自建 MCP 服务（资产认知/图谱/证据链）
+├─ tests/                 # Golden 集、Schema、MCP 核心与一致性测试
+├─ mcp_servers/           # 自建 MCP 服务（核心逻辑 + FastMCP 包装）
 ├─ skills/                # 自建 Nexent Skill 包
 ├─ deploy/                # Nexent 部署与模型接入说明
 ├─ AGENTS.md              # 仓库提交约定
@@ -64,7 +65,7 @@ python -m unittest discover -s tests -v
 | 里程碑 | 内容 | 状态 |
 |---|---|---|
 | M1 | 场景数据、资产卡片、Golden 评测集 | 已完成 |
-| M2 | Nexent 部署、知识库、MCP 接入 | 待环境 |
+| M2 | Nexent 部署、知识库、MCP 接入 | MCP 代码层完成，平台联调待环境 |
 | M3 | 本体 v1、候选抽取、人工审核闭环 | 骨架完成 |
 | M4 | 检索-推理执行流、证据链 | 待开发 |
 | M5 | 评测回归与版本演化 | 待开发 |
