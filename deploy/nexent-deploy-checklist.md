@@ -32,6 +32,9 @@
 - [x] Python 3.12.10 可用
 - [x] 离线合成数据可生成
 - [x] MCP 核心逻辑与单测通过
-- [ ] Docker 可用（缺失：未安装 Docker / WSL）
-- [ ] Nexent 实例已启动（阻塞：同上）
+- [x] Docker 可用（Docker Desktop wsl-2，server 29.7.2）
+- [x] Nexent 实例已启动（v2.4.1，大陆镜像源 ccr.ccs.tencentyun.com/nexent-hub）
+- [x] Nexent Web：http://localhost:3000 返回 200
 - [ ] 模型 API Key 已配置（阻塞：无 Key）
+
+> 默认管理员：`suadmin@nexent.com` / `Nexent@123`（部署脚本自动创建，首次登录后请尽快修改）。

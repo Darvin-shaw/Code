@@ -19,7 +19,8 @@ PDF 规程、Excel/CSV 台账、质检图片等异构存量数据，加工成「
 - [x] T3.1 本体 Schema v1、标准锚点映射与 25 条种子三元组（27 项单测通过）
 - [x] T3.2 规则驱动候选抽取管线（31 项单测通过，输出 9 条新事实/候选）
 - [x] T2.1 部署文档、环境模板与就绪检查（实际启动阻塞：本机无 Docker）
-- [ ] T2.1 Nexent 实例启动与模型接入（需 Docker 与模型 Key）
+- [x] T2.1 Nexent 实例启动（v2.4.1，大陆镜像源，Web http://localhost:3000 返回 200）
+- [ ] T2.1 模型接入（需模型 API Key：LLM/VLM/Embedding）
 - [ ] Nexent MCP 联调与 Skill 包完善
 - [ ] T3.3 人工审核闭环
 
