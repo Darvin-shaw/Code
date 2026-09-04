@@ -1,0 +1,9 @@
+{
+  "input": "D:\\workers\\VScode\\Code\\ontology\\candidates\\candidate-triples.jsonl",
+  "total": 9,
+  "confirmed": 5,
+  "rejected": 0,
+  "pending": 4,
+  "auto_confirm_threshold": 0.9,
+  "auto_reject_threshold": 0.4
+}

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import unittest
 
-from run_eval import load_golden, validate_golden
+from tests.run_eval import load_golden, validate_golden
 
 
 ROOT = None  # run_eval 自身基于文件定位，无需此处重复
