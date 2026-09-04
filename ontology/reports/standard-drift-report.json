@@ -1,0 +1,64 @@
+{
+  "delta_version": "2026-delta",
+  "title": "2026 版标准修订演示增量",
+  "diff": {
+    "added": [
+      "STD:GB/T19001:2026:8.7.1"
+    ],
+    "removed": [],
+    "unchanged_count": 3
+  },
+  "affected_triple_count": 2,
+  "affected_triples": [
+    {
+      "id": "TR-0015",
+      "subject_id": "QP-INC-03",
+      "subject_type": "QualityDocument",
+      "predicate": "aligns_with",
+      "object_id": "STD:GB/T19001:8.7",
+      "object_type": "StandardClause",
+      "confidence": 0.9,
+      "status": "confirmed",
+      "source": "seed-rule",
+      "standard_ref": "STD:GB/T19001:8.7",
+      "version": "v1",
+      "file_ref": "02_quality_docs/STD-GB-T19001-摘要.md"
+    },
+    {
+      "subject_id": "QP-INC-03",
+      "subject_type": "QualityDocument",
+      "predicate": "references",
+      "object_id": "SP-INSP-AX",
+      "object_type": "QualityDocument",
+      "confidence": 0.8,
+      "status": "candidate",
+      "source": "rule-doc",
+      "standard_ref": "",
+      "version": "v1",
+      "file_ref": "02_quality_docs/QP-INC-03-不合格品控制程序.md"
+    }
+  ],
+  "affected_documents": [
+    "QP-INC-03"
+  ],
+  "coverage": {
+    "total_mappings": 4,
+    "mapped_internal_docs": [
+      "IR-20250518-01",
+      "NC-20250518-001",
+      "QP-INC-03",
+      "SP-INSP-AX",
+      "WI-HT-AX"
+    ],
+    "mapped_ontology_terms": [
+      "Defect",
+      "DispositionDecision",
+      "Equipment",
+      "InspectionRecord",
+      "MeasurementItem",
+      "Process",
+      "QualityDocument",
+      "StandardClause"
+    ]
+  }
+}

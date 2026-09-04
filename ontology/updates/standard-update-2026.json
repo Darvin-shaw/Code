@@ -1,0 +1,16 @@
+{
+  "version": "2026-delta",
+  "title": "2026 版标准修订演示增量",
+  "notice": "演示用合成增量，不代表真实标准文本；仅用于 T3.4 漂移检测。",
+  "add": [
+    {
+      "clause_id": "STD:GB/T19001:2026:8.7.1",
+      "source_title": "不合格输出的控制（2026 修订摘要）",
+      "synonyms": ["不合格输出", "返工复检", "让步审批升级"],
+      "internal_docs": ["QP-INC-03"],
+      "ontology_terms": ["DispositionDecision", "Defect"],
+      "note": "要求让步接收审批链路升级并保留数字化记录"
+    }
+  ]
+}
+
