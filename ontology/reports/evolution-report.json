@@ -1,0 +1,26 @@
+{
+  "old_version": "v1",
+  "new_version": "v2",
+  "changes": [
+    "2026 标准条款对齐",
+    "新增审核确认三元组",
+    "修正 2 条旧决策"
+  ],
+  "old_scores": {
+    "recall": 0.9,
+    "precision": 0.8,
+    "traceability": 0.95
+  },
+  "new_scores": {
+    "recall": 0.92,
+    "precision": 0.81,
+    "traceability": 0.97
+  },
+  "deltas": {
+    "precision": 0.01,
+    "recall": 0.02,
+    "traceability": 0.02
+  },
+  "tolerance": 0.05,
+  "passed": true
+}
