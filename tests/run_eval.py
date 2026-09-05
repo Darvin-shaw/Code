@@ -12,6 +12,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
+from typing import Dict
 
 
 REQUIRED_KEYS = {
@@ -76,6 +77,27 @@ def main() -> int:
     return 0
 
 
+def score_results(golden: list[dict], results: Dict[str, dict]) -> list[dict]:
+    """按 Golden 题号计算召回/精确/违规/溯源分。"""
+    try:
+        from tests.eval_metrics import score_case
+    except ImportError:
+        from eval_metrics import score_case
+
+    scored: list[dict] = []
+    for item in golden:
+        entry = results.get(item["id"])
+        if not entry:
+            continue
+        case = score_case(
+            required=item["required_evidence"],
+            forbidden=item["forbidden_evidence"],
+            retrieved=entry.get("retrieved", []),
+            assertions_evidence=entry.get("assertions_evidence", {}),
+        )
+        scored.append({"id": item["id"], **case})
+    return scored
+
+
 if __name__ == "__main__":
     raise SystemExit(main())
-
