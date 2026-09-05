@@ -1,0 +1,12 @@
+top_k:
+  type: number
+  required: false
+  description: "Max results per retrieval source"
+  description_zh: "每个检索源最大返回条数"
+  default: 5
+require_citations:
+  type: boolean
+  required: false
+  description: "Force citations for every conclusion"
+  description_zh: "是否强制每条结论带引用"
+  default: true
