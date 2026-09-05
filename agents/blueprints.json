@@ -1,0 +1,94 @@
+{
+  "version": "draft-v1",
+  "note": "蓝图字段与 Nexent Agent 配置页语义对齐，但导入平台时以平台导出的 JSON/ZIP 为权威格式；本文件用于团队设计与校验。",
+  "agents": [
+    {
+      "variable": "quality_decision",
+      "display_name": "衡策·质量决策",
+      "role": "面向用户的质量合规决策主智能体",
+      "duty_prompt": "根据检验台账、规程条款与图谱关系，输出可溯源的质量处置/根因结论。",
+      "constraint_prompt": "每条结论必须带引用；证据不足时明确声明；禁止编造来源。",
+      "knowledge_bases": ["标准规程库", "台账与记录库", "图片证据库"],
+      "tools": [
+        "knowledge_base_search",
+        "analyze-text-file",
+        "analyze-image",
+        "graph_search",
+        "build_trace",
+        "render_trace"
+      ],
+      "skills": ["evidence-decision"],
+      "collaborative_agents": [
+        "asset_cognition_assistant",
+        "ontology_steward",
+        "evidence_auditor"
+      ],
+      "run_strategy": {
+        "planning_mode": true,
+        "max_steps": 15,
+        "self_verification": true,
+        "allow_conversation_metadata": true
+      },
+      "publish_as_main": true,
+      "publish_as_a2a": true
+    },
+    {
+      "variable": "asset_cognition_assistant",
+      "display_name": "资产认知员",
+      "role": "解析上传文件并登记/检索资产卡片",
+      "duty_prompt": "识别文件模态与业务标签，调用资产认知工具完成卡片注册与检索。",
+      "constraint_prompt": "模态/文档类型必须符合资产卡片 Schema；注册前先校验。",
+      "knowledge_bases": [],
+      "tools": ["analyze-text-file", "analyze-image", "validate_asset_card", "register_asset_tool"],
+      "skills": [],
+      "collaborative_agents": [],
+      "run_strategy": {
+        "planning_mode": false,
+        "max_steps": 8,
+        "self_verification": false,
+        "allow_conversation_metadata": false
+      },
+      "publish_as_main": false,
+      "publish_as_a2a": false
+    },
+    {
+      "variable": "ontology_steward",
+      "display_name": "图谱运营官",
+      "role": "维护本体候选审核与图谱写入",
+      "duty_prompt": "展示候选三元组与置信度，按确认/驳回执行审核并写回图谱。",
+      "constraint_prompt": "三元组必须符合 Schema；决策需留痕 reviewer/reason。",
+      "knowledge_bases": [],
+      "tools": ["graph_search", "add_triple", "ontology_diff"],
+      "skills": [],
+      "collaborative_agents": [],
+      "run_strategy": {
+        "planning_mode": false,
+        "max_steps": 10,
+        "self_verification": true,
+        "allow_conversation_metadata": false
+      },
+      "publish_as_main": false,
+      "publish_as_a2a": false
+    },
+    {
+      "variable": "evidence_auditor",
+      "display_name": "证据审计官",
+      "role": "对证据链做反证检索与引用完整性审计",
+      "duty_prompt": "检查断言是否全部有证据、结论是否有反证、引用是否可回查。",
+      "constraint_prompt": "不通过审计不得放行最终结论。",
+      "knowledge_bases": ["标准规程库", "台账与记录库"],
+      "tools": ["knowledge_base_search", "check_trace"],
+      "skills": [],
+      "collaborative_agents": [],
+      "run_strategy": {
+        "planning_mode": false,
+        "max_steps": 8,
+        "self_verification": true,
+        "allow_conversation_metadata": false
+      },
+      "publish_as_main": false,
+      "publish_as_a2a": false
+    }
+  ]
+}
+
